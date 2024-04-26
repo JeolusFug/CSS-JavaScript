@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reactive Web</title>
+    <style>
+        .container1 {
+            width: 700px;
+            background-color: #eee;
+            border: 1px solid black;
+            margin-bottom: 30px;
+            display: flex;
+            /* 기본축 지정 가능, 컨테이너 안에 들어있는 항목들의 배치 방법을 정할 수 있음 */
+            /* 기본값은 row, -reverse는 역순이라는 뜻 column은 세로 */
+            flex-direction: row;
+            /* 줄바꾸는 요소 기본값은 줄을 바꾸지 않는 nowrap
+            컨테이너 크기를 넘어서도 넘쳐서 표시되도록하는게 기본값
+            wrap을 하면 주축의 범위를 넘어서면 교차축을 따라 배치됨 */
+            flex-wrap: wrap;
+            /* 주축의 어느위치에 배치할지 */
+            justify-content: space-evenly;
+            /* 교차축의 어느위치에 배치할지(한줄일때) */
+            /* baseline는 글자의 기준선을 맞추는 방법 */
+            align-items: stretch;
+            /* 교차축의 어느위치에 배치할지(여러줄일때) */
+            align-content: space-between;
+        }
+
+        .box1 {
+            padding: 5px 45px;
+            margin: 5px;
+            width: 80px;
+            background-color: black;
+        }
+
+        span {
+            color: white;
+            text-align: center;
+        }
+
+        #wrapper {
+            display: grid;
+            /* 칼럼과 줄의 크기와 개수를 조절할 수 있음 */
+            /* grid-template-columns: 200px 200px 200px;
+            grid-template-rows: 200px 100px; */
+            /* 비율로도 조절 할 수 있음 */
+            /* grid-template-columns: 1fr 1fr 1fr; */
+            /* 반복될 경우는 아래처럼 반복으로 처리할 수도 있다 */
+            /* grid-template-columns: repeat(3, 1fr); */
+            /* 아래처럼 컬럼의 개수를 화면의 크기별로 늘였다 줄였다 할 수 있다 */
+            /* auto-fit은 브라우저 화면 너비(높이)를 빈공간 없이 가득 채우고, auto-fill은 내용에 필요한 만큼만 사용한다 */
+            /* grid-template-columns: repeat(auto-fit, 200px); */
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* 아래처럼 하드코딩으로 수치를 지정할 수도 있지만 넘치거나 모자랄 수 있다 */
+            /* grid-template-rows: 100px; */
+            /* 이럴땐 아래처럼 자동으로 조절하게끔 해주면 된다 최소 100px이고 더 필요하면 자동으로 늘어나게 한다 */
+            grid-template-rows: minmax(50px, auto);
+        }
+
+        .items {
+            padding: 10px;
+            background-color: #eee;
+        }
+
+        .items:nth-child(odd) {
+            background-color: #bbb;
+        }
+
+
+        #wrapper2 {
+            width: 700px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 100px);
+        }
+
+        .box2 {
+            padding: 15px;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .box3 {
+            background-color: #3689ff;
+            grid-column: 1/4;
+        }
+
+        .box4 {
+            background-color: #00cf12;
+            grid-row: 2/4;
+            /* grid-column:1/2; */
+            grid-column-start: 1;
+        }
+
+        .box5 {
+            background-color: #ff9019;
+            grid-column: 2/4;
+            /* grid-row:2/3; */
+            grid-row-start: 2;
+        }
+
+        .box6 {
+            background-color: #ffd000;
+            grid-column-start: 3;
+            grid-row-start: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>반응형 웹 디자인</h2>
+    <p>화면 크기에 따라 웹의 내용의 배치나 크기가 달라지는것</p><br>
+    <p>뷰 포트는 실제 내용이 표시되는 영역을 의미</p><br>
+    <p>pc, 모바일 화면의 픽셀 표시 방법이 다르기 때문에 모바일 화면에서 의도한대로 표시되지 않음</p><br>
+    <p>뷰포트는 meta태그를 사용한다</p><br>
+    <p>뷰포트 단위는</p><br>
+    <p>vw(viewport width)1vw는 뷰포트 너비의 1%와 같다</p><br>
+    <p>vh(viewport height) 1vh는 뷰포트 높이의 1%</p><br>
+    <p>vmin(viewport minimum) 1vmin뷰포트의 너비와 높이 중에서 작은 값의 1%</p><br>
+    <p>vmax(viewport maximum) 1vmax는 뷰포트의 너비와 높이 중에서 큰 값의 1%</p><br>
+    <p>결국 글씨나 요소의 크기 등이 화면의 크기에 맞춰서 바뀐다는 의미</p><br>
+    <p>반응형 웹 사이트를 만드는 가장 기본적인 방법은 미디어 쿼리(media queries)를 사용하는것</p><br>
+    <p>미디어쿼리는 접속하는 장치에 따라 특정한 CSS 스타일을 사용하는 방법이다</p><br>
+    <p>@media screen and (min-width: 768px) and (max-width: 1439px) { } 의 경우</p><br>
+    <p>미디어 유형이 screen 이면서 최소 너비가 768px이고 최대 너비가 1439px일 경우에 적용할 CSS라는 의미이다</p><br>
+    <h3>미디어 유형의 종류</h3>
+    <p>print 인쇄 장치에서 사용할 CSS</p><br>
+    <p>screen 컴퓨터 스크린에서 사용할 CSS 스마트폰의 스크린도 포함</p><br>
+    <p>tv 음성과 영상이 동시에 출력되는 TV에서 사용할 CSS</p><br>
+    <p>aural 음성 합성 장치(주로 화면을 읽어 소리로 출력해 주는 장치)에서 사용할 CSS</p><br>
+    <p>braille 점자 표시 장치에서 사용할 CSS</p><br>
+    <p>handheld 패드처럼 손에 들고 다니는 장치를 위한 CSS</p><br>
+    <p>projection 프로젝터를 위한 CSS</p><br>
+    <p>tty 디스플레이 기능이 제한된 장치에 맞는 CSS를 정의 이런 장치는 px단위를 사용할 수 없음</p><br>
+    <p>embossed 점자 프린터에서 사용할 CSS</p><br>
+    <p>보통 width, height, min-width, min-height, max-width, max-height를 많이 사용함</p><br>
+    <p>화면 회전을 확인하려면 orientation: portrait(세로모드), orientation: landscape(가로모드)를 사용한다</p><br>
+    <p>https://yesviz.com/devices.php</p><br>
+    <p>라는 사이트에 가면 거의 모든 기기의 사이즈가 나와있다</p><br>
+    <p>또한 특정 기기에 맞는 미디어 쿼리가 나온다</p><br>
+    <p>14mq에서 계속</p><br>
+    <h3>그리드 레이아웃</h3>
+    <p>그리드 레이아웃은 반응형 웹 디자인에서 웹 문서 요소를 배치하는 기준</p><br>
+    <p>웹 사이트 화면을 여러 개의 칼럼으로 나눈 후 웹 요소를 배치</p><br>
+    <p>화면을 규칙적으로 배열하므로 레이아웃을 일관성 있게 유지할 수 있다</p><br>
+    <p>시각적으로 안정되고, 업데이트가 편한 웹 디자인 구성이며 요소를 자유롭게 배치할 수 있다</p><br>
+    <p>그리드 레이아웃을 만드는 방법은</p><br>
+    <p>플렉스 박스 레이아웃(플렉서블 박스 레이아웃)</p><br>
+    <p>CSS 그리드 레이아웃 으로 나눌 수 있다.</p><br>
+    <p>플렉스 박스 레이아웃은 수평방향이나 수직방향 중 하나를 주축으로 정하고 박스를 배치하며</p><br>
+    <p>여유 공간이 생길 경우 너비나 높이를 적절하게 늘리거나 줄일 수 있다.</p><br>
+    <p>CSS 그리드 레이아웃은 최근에 등장한 CSS 표준이며</p><br>
+    <p>수평방향이나 수직방향 어디로든 배치가 가능하며</p><br>
+    <p>레고 블록을 끼워 맞추듯 요소를 배치 할 수 있다.</p><br>
+    <h3>플렉스 박스 레이아웃</h3>
+    <div class="container1">
+        <div class="box1"><span>1</span></div>
+        <div class="box1"><span>2</span></div>
+        <div class="box1"><span>3</span></div>
+        <div class="box1"><span>4</span></div>
+        <div class="box1"><span>5</span></div>
+        <div class="box1"><span>6</span></div>
+    </div>
+    <p>https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Flexbox</p><br>
+    <p>위에서 많은 정보를 찾아볼 수 있음</p><br>
+    <p>http://flexboxfroggy.com/#ko</p><br>
+    <p>위에서 플렉스박스의 연습게임같은것을 해볼 수 있음</p><br>
+    <p>http://www.flexboxdefense.com</p><br>
+    <p>플렉스 박스 연습할 수 있는 사이트</p><br>
+    <h3>CSS 그리드 레이아웃</h3>
+    <p>플렉스 박스는 주축/교차축이 있지만 그리드 레이아웃은 양쪽 모두 사용</p><br>
+    <p>가로는 줄(row) 세로는 칼럼(column)이라고 말함 각 사이의 여백을 조절할 수 있음</p><br>
+    <div id="wrapper">
+        <div class="items">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, reprehenderit.Lorem ipsum
+            dolor, sit amet consectetur adipisicing elit. </div>
+        <div class="items">Lorem ipsum dolor, sit amet consectetur adipisicing elit.Lorem ipsum dolor, sit amet
+            consectetur adipisicing elit</div>
+        <div class="items">Lorem ipsum dolor sit amet.Lorem ipsum dolor, sit amet consectetur adipisicing elit</div>
+        <div class="items">Lorem ipsum dolor sit.Lorem ipsum dolor, sit amet consectetur adipisicing elit</div>
+        <div class="items">Lorem, ipsum dolor.</div>
+    </div>
+
+    <div id="wrapper">
+        <div class="box2 box3">box1</div>
+        <div class="box2 box4">box2</div>
+        <div class="box2 box5">box3</div>
+        <div class="box2 box6">box4</div>
+    </div>
+    <img src="images4/gridline.png" style="display: grid;">
+    <p>왼쪽 아래의 표에서 grid-end-start는 오류, gridrow-start가 맞다</p><br>
+    <img src="images4/gridarea.png" style="display: grid;">
+    <p>플렉스 박스와 CSS 그리드는 서로 배타적이 아니라 두개를 같이 사용할 수도 있다</p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+    <p></p><br>
+</body>
+
+</html>

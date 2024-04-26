@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 박스 모델</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid #ffccff;
+        }
+
+        .box2 {
+            box-sizing: border-box;
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            border: 10px solid #ffccff;
+        }
+
+        .border {
+            border-top: 1px double red;
+            border-right: 2px dashed orange;
+            border-bottom: 4px dotted yellow;
+            border-left: 8px solid green;
+        }
+
+        .border2 {
+            border-top: 1px double red;
+            border-right: 2px dashed orange;
+            border-bottom: 4px dotted yellow;
+            border-left: 8px solid green;
+            border-radius: 30%;
+        }
+
+        #margin1 {
+            margin: 20px;
+            background-color: #00ffff;
+        }
+
+        #margin2 {
+            margin: 20px 40px;
+            background-color: #00ffff;
+        }
+
+        #margin3 {
+            margin: 20px 40px 60px;
+            background-color: #033d52;
+        }
+
+        #margin4 {
+            margin: 20px 40px 60px 80px;
+            background-color: rgb(73, 56, 144);
+        }
+
+        #margin5 {
+            margin-right: 20px;
+            background-color: rgb(78, 52, 123);
+        }
+
+        table {
+            caption-side: bottom;
+            border: 1px solid black;
+        }
+
+        th,td {
+            border: 2px dashed #cfcfcf;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline-block;
+            border: 1px solid black;
+            padding: 20px;
+            margin: 0 20px;
+        }
+
+        #box1 {
+            background-color: red;
+            width: 80px;
+            height: 40px;
+            float: right;
+        }
+        #box2 {
+            background-color: orange;
+            width: 80px;
+            height: 40px;
+            float: right;
+        }
+        #box3 {
+            background-color: yellow;
+            width: 80px;
+            height: 40px;
+            float: right;
+        }
+        #box4 {
+            background-color: green;
+            width: 800px;
+            height: 40px;
+            float: left;
+        }
+
+        #container {
+            width: 1200px;
+            margin: 20px auto;
+        }
+        #header {
+            width: 100%;
+            height: 120px;
+            background-color: #acacac;
+        }
+        #left-sidebar {
+            width: 250px;
+            height: 600px;
+            background-color: #e9e9e9;
+            float: left;
+        }
+        #contents {
+            width: 800px;
+            height: 600px;
+            background-color: #abcdef;
+            float: left;
+
+        }
+        #right-sidebar {
+            width: 250px;
+            height: 600px;
+            background-color: #e9e9e9;
+            float: right;
+        }
+        #footer {
+            width: 100%;
+            height: 100px;
+            background-color: gray;
+            clear: both;
+        }
+        #static {
+            position: static;
+            background-color: gray;
+        }
+        #relative {
+            position: relative;
+            background-color: darkmagenta;
+            width: 400px;
+            height: 200px;
+            left: 100px;
+            top: -50px;
+        }
+        #fixed {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            color: #abcdef;
+            /* 오른쪽에서 30px만큼 떨어지게 */
+            right: 30px;
+            /* 위에서 30px 만큼 떨어지게 */
+            top: 30px;
+        }
+        #absolute {
+            width: 200px;
+            height: 100px;
+            position: absolute;
+            right: 100px;
+            bottom: 50px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>레이아웃을 구성하는 CSS 박스 모델</h2>
+    <p>블럭 레벨 요소는 글 자체가 브라우저 상에서 한 줄을 차지하는 것</p><br>
+    <p>인라인 레벨 요소는 자기가 딱 필요한 영역만을 차지하는 것</p><br>
+    <p>p 태그를 사용하면 블럭 레벨, 한줄</p><br>
+    <p>span 태그를 사용하면 인라인 레벨, 필요한 영역</p><br>
+    <img src="images/boxmodel2.png" height="200px">
+    <p>이게 박스모델</p><br>
+    <p class="box1">콘텐츠 영역, 테두리, 패딩등 모든 값을 잘 생각해서 설정해야함</p><br>
+    <p>아니면 넘쳐서 보이지 않거나 이상하게 보일 수 있음</p><br>
+    <p class="box2">box-sizing: border-box 를 사용하면 테두리 굵기도 포함해서 계산해달라는 뜻</p><br>
+    <p>박스 모델의 값 지정 방향은 top right bottom left 시계방향으로 돌아감</p><br>
+    <p>border-style 속성은 기본 none으로 표시가 안되고</p><br>
+    <p>테두리를 그리려면 맨 먼저 테두리 스타일부터 지정해야 한다</p><br>
+    <p>none 테두리 없음. 기본값</p><br>
+    <p>hidden 테두리를 감춤 border-collapse: collapse(테두리 합치기) 일경우 다른 테두리도 감춤</p><br>
+    <p>solid 실선</p><br>
+    <p>dotted 점선</p><br>
+    <p>dashed 짧은 직선</p><br>
+    <p>double 이중선 두 선 사이의 간격이 border-width가 된다</p><br>
+    <p>groove 표에서 테두리를 창에 조각한듯 홈이 파인듯 입체 느낌</p><br>
+    <p>inset 표에서 border-collapse: seperate일 경우 전체 박스 테두리가 창에서 튀어나온것처럼 표시된다.</p><br>
+    <p>inset 표에서 border-collapse: collapse일 경우 ridge와 똑같이 표시된다.</p><br>
+    <p>ridge 테두리를 창에서 튀어나온것처럼 표시한다</p><br>
+    <p>border-width, border-color 도 설정가능 하지만 동서남북 각각 따로 지정할 경우 border-style을 가장 먼저 지정해줘야함</p><br>
+    <p class="border">border-width는 px, 혹은 thin->medium->thick 굵기 설정 가능</p><br>
+    <p class="border2">border-radius는 꼭지점을 둥글게 처리. 이미지도 가능</p><br>
+    <img src="images/mic.jpg" style="border-radius: 35%;" height="200px">
+    <p id="margin1">마진을 설정할 때 마진 중첩 현상을 조심해야함</p><br>
+    <p id="margin2">마진을 세로로 배치할 때 마진과 마진이 만나면 마진이 두배가 되지는 않음</p><br>
+    <p id="margin3">위의 박스의 아래마진을 30px, 밑의 박스의 위마진을 30px로 설정하면</p><br>
+    <p id="margin4">60px이 될것같지만 30px 밖에 되지 않음</p><br>
+    <p id="margin5">50px, 30px이면 50px이 됨 둘중 큰 마진으로 겹쳐진다</p><br>
+    <p>가로로 배치될 때는 상관이 없음</p><br>
+    <p>padding은 콘텐츠와 밖의 테두리 사이의 여백</p><br>
+    <p>패딩을 지정하지 않으면 바짝 붙어 보기 좋지 않음</p><br>
+    <p>패딩을 지정하는 것은 마진과 똑같음</p><br>
+    <table>
+        <caption style="caption-side: bottom;">테이블 제목</caption>
+        <tr>
+            <th>가</th>
+            <th>나</th>
+            <th>다</th>
+            <th>라</th>
+        </tr>
+        <tr>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>22</td>
+            <td>33</td>
+            <td>44</td>
+        </tr>
+    </table>
+    <h2>8-2</h2>
+    <nav>
+        <ul>
+            <li>menu 1</li>
+            <li>menu 2</li>
+            <li>menu 3</li>
+            <li>menu 4</li>
+        </ul>
+    </nav>
+    <p>display: inline-block을 사용하면 list의 각 요소를 인라인 블럭처럼(한줄)로 사용 가능</p><br>
+    <div id="box1">박스1</div>
+    <div id="box2">박스2</div>
+    <div id="box3">박스3</div>
+    <div id="box4">박스4</div>
+    <p>float 속성은 보통 띄워놓을때 사용함 화면 어딘가에 띄워놓을때 사용</p><br>
+    <p>없앨때는 clear사용</p><br>
+    <div id="container">
+      <header id="header">
+        <h1>사이트 제목</h1>
+      </header>
+      <aside id="right-sidebar">
+        <h2>사이드바</h2>				
+      </aside>
+      <aside id="left-sidebar">
+        <h2>사이드바</h2>				
+      </aside>
+      <section id="contents">
+        <h2>본문</h2>
+      </section>
+      <footer id="footer">
+        <h2>푸터</h2>
+      <footer>
+    </div>
+    <p id="static">static 사용했을때</p><br>
+    <p id="relative">relative 사용했을때</p><br>
+    <p id="fixed">fixed 사용했을때</p><br>
+    <p id="absolute">absolute 사용했을때</p><br>
+    <p>absolute를 사용할때는 부모되는 요소에 position: relative가 있어야함</p><br>
+    <p>그래야 기준을 잡고 오른쪽 위쪽 조정이 가능하다</p><br>
+    <p></p><br>
+</body>
+
+</html>

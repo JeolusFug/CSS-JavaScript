@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSSBackGroundDesign</title>
+    <style>
+        body {
+            /* background-color: rgb(194, 194, 255); */
+            /* background-image: url('images2/bg1.jpg'); */
+            /* background-repeat: no-repeat; */
+            /* background-repeat: repeat-x; */
+            /* background-repeat: repeat-y; */
+            /* background-position: top right; */
+            /* background-attachment: fixed; */
+            background: url('images2/bg2.png') no-repeat top right fixed;
+        }
+
+        #container {
+            width: 1100px;
+            margin: 50px auto;
+        }
+        .box {
+            float: left;
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+            background: url('images2/bg3.png') no-repeat left top;
+            /* background-size: auto; */
+            background-size: cover;
+        }
+        #container2 {
+            width: 1100px;
+            margin: 50px auto;
+        }
+        .box2 {
+            float: left;
+            border: 1px solid black;
+            width: 400px;
+            height: 400px;
+            margin: 20px;
+            background: url('images2/bg4.jpg') no-repeat left top;
+            background-size: contain;
+        }
+
+        #boxgra {
+            width: 500px;
+            height: 300px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        .grad {
+            background: linear-gradient(77deg, red, orange, yellow, green, blue, darkblue, purple);
+            /* background: linear-gradient(180deg, white 30%, skyblue 60%, blue ); */
+        }
+
+        .boxgra2 {
+            width: 500px;
+            height: 300px;
+            margin: 10px;
+            border: 1px solid black;
+        }
+
+        #gra11 {
+            background: radial-gradient(white, blue 80%, yellow);
+        }
+        #gra22 {
+            background: radial-gradient(circle at 20% 20%, white, yellow, red);
+        }
+
+        .cr {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            box-shadow: 10px 5px 10px #ccc;
+        }
+
+        #crr {
+            background: blue;
+            background: radial-gradient(circle at 20% 20%, white, blue);
+        }
+    </style>
+</head>
+<body>
+    <p>background-image는 화면이 늘어나면 해당 이미지를 계속 반복함</p><br>
+    <p>background-repeat은 반복하는 범위나 한번만 할건지를 선택할 수 있음</p><br>
+    <p>background-position은 이 배경 이미지 등의 위치를 수정할 수 있음</p><br>
+    <p>background-attachment fixed는 배경이미지로 고정해서 위치가 바뀌지 않게된다.</p><br>
+    <p>스크롤을 내리고 하더라도 그자리에서 계속 표시가 된다.</p><br>
+    <p>그냥 background라고 한 다음 속성값을 나열하면 줄여서 사용이 가능하다</p><br>
+    <div id="container">
+        <div class="box"></div>
+    </div><br>
+    <p>background-size: auto 는 크기를 알아서 맞춰준다</p><br>
+    <p>background-size: contain 은 배경(박스)안에 이미지가 모두 보일 수 있게끔 해준다</p><br>
+    <div id="container2">
+        <div class="box2"></div>
+    </div><br>
+    <p>background-size: cover는 이미지가 잘리거나 늘려도 상관없고 이 배경(박스)를 가득담음 씌워버림</p><br>
+    <h2>그라데이션</h2>
+    <p>크게 선형 그라데이션과 원형 그라데이션이 있음</p><br>
+    <div id="boxgra" class="grad"></div>
+    <p>그라데이션은 to 도착지점으로 설정 위에서 아래면 to bottom</p><br>
+    <p>혹은 도착하는 각도값을 지정하면 됨 오른쪽 위로 가고싶으면 45deg 세밀하게 지정할 수 있음</p><br>
+    <p>색깔에 %를 넣어서 비율지정도 가능하다</p><br>
+    <div id="gra11" class="boxgra2"></div>
+    <div id="gra22" class="boxgra2"></div>
+    <p>원형 그라데이션에서 타원형을 만들고 싶을때는 기본형이 타원형이기 때문에 따로 지정하지 않아도 된다</p><br>
+    <p>circle at 20% 20% 는 원형태로 할것이고, 가로에서 20%, 세로에서 20%인 곳에서 부터 시작한다는 뜻</p><br>
+    <p>원형 그라데이션에 크기를 정할 수 있음</p><br>
+    <p>closest-side는 그라데이션이 점점 퍼져나가다가 가장 가까운 벽(요소)에 닿을때 까지 그림</p><br>
+    <p>closest-corner는 점점 퍼지다가 가까운 코더에 닿을때 까지 그림</p><br>
+    <p>farthest-side는 가장 멀리 떨어져 있는 벽에 닿을때 까지 그림</p><br>
+    <p>farthest-corner는 가장 멀리 떨어져 있는 코너에 닿을때 까지 그림</p><br>
+    <div id="crr" class="cr"></div>
+</body>
+</html>

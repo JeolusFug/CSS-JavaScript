@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>텍스트를 표현하는 스타일</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Diphylleia&display=swap');
+
+        h2 {
+            font-family: 돋움;
+            font-size: 30px;
+            /* font-size: 30em;
+            1em = 16px */
+        }
+
+        p {
+            font-family: "Diphylleia", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        table{
+            caption-side: top;
+            border: 1px solid #ff6666;
+        }
+
+        td, th {
+            border: 1px solid #6666ff;
+        }
+        th {
+            background-color: #ffcccb;
+        }
+
+        .italic {
+            font-style: italic;
+        }
+
+        .inherit {
+            font-style: inherit;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h2>글자와 관련된 속성</h2>
+    <p>font-family는 글꼴 종류를 지정</p><br>
+    <p>내 컴퓨터에는 있는대 보는 사람의 컴퓨터에는 없다면 제대로 표시되지 않을 수 있음</p><br>
+    <p class="italic">특정 폰트가 필요하다면 폰트를 다운로드 할 수 있도록 제공해주면 됨</p><br>
+    <p class="inherit">font-size는 글자 크기를 지정</p><br>
+    <p>font-style은 글자를 이텔릭체로 표시할지 지정</p><br>
+    <p>font-weight는 글자의 굵기를 지정</p><br>
+    <p>웹폰트는 특정 폰트를 사용할 때 폰트를 웹서버에 올려놓고 사용자가 웹 사이트에 접속했을때 폰트도 다운로드해서 사용하도록 하는것</p><br>
+    <p>네트워크의 영향을 받고, 웹폰트가 많으면 많을수록 느려질 가능성이 있음</p><br>
+    <p>font-family에 글꼴을 두개 이상 설정하는것은 첫번째를 받지 못했을 때</p><br>
+    <p>두번째 글꼴을 사용한다는 뜻임</p><br>
+    <h2>색상</h2>
+    <p style="color: purple;">색상 이름 표기법은 잘 알려진 색상 이름으로 표시함</p><br>
+    <p style="color: #765432;">16진수표기법은 #을 쓰고 뒤에 16진수 6자리를씀 #ffffff, #000000과 같이 사용</p><br>
+    <p>두자리씩 빨강, 초록, 파랑의 양 두자리가 겹치면 줄여쓰기 가능</p><br>
+    <p style="color: #0cf;">#00ffcc -> #0fc</p><br>
+    <p style="color: hsl(240, 100%, 50%);">hsl/hsla 표기법은 세가지 숫자로 표시하고 색상, 채도, 밝기의 양</p><br>
+    <p style="color: hsl(240, 100%, 50%, 0.3);">투명도를 조절할때는 마지막에 알파값을 추가</p><br>
+    <p style="color: rgb(177, 33, 228);">rgb/rgba 표기법은 세가지 숫자로 표시하고 빨강, 초록 파랑의 양 0~255</p><br>
+    <p style="color: rgb(177, 33, 228, 2);">투명도를 조절할 때는 마지막에 알파값을 추가함</p><br>
+    <p>마우스 커서를 올리면 팔레트가 나옴</p><br>
+    <p>이름부분을 누르면 종류가 바뀌니까 선택할 수 있음</p><br>
+    <h2>텍스트 스타일 속성</h2>
+    <p style="color: coral;">color는 글자색 지정</p><br>
+    <p style="text-decoration: overline underline line-through;">text-decoration 은 텍스트에 밑줄 취소선을 설정 하이퍼링크를 만들면 밑줄이 생기는대 이걸 없앨때 많이 사용 none을 사용하면 없어짐</p><br>
+    <p>text-transform 텍스트 전체 혹은 첫글자를 대문자로 설정</p><br>
+    <p style="text-shadow: 5px 10px 3px #543543;">text-shadow 텍스트에 그림자를 추가. 가로, 세로, 번짐정도, 색상 설정 가능</p><br>
+    <p>letter-spacing 글자 사이의 간격을 지정</p><br>
+    <p>word-spacing 단어 사이의 간격을 지정</p><br>
+    <p style="text-align: center;">text-align 텍스트 정렬 방법을 지정</p><br>
+    <p>line-height 줄 간격을 조절 px보다 그냥 숫자를 넣어 몇배의 단위로 사용하는게 좋음</p><br>
+    <ol>
+        <li style="list-style-type: armenian;">순서없는 리스트에서 리스트 구분하는 기호를 바꿀수 있음</li>
+        <li style="list-style: circle;">간단하게 list-style이라고도 사용 가능</li>
+        <li style="list-style: none;">이 기호를 없애버릴수도 있음</li>
+    </ol>
+    <table>
+        <caption style="caption-side: bottom;">테이블 제목이지만 밑으로 이동</caption>
+            <tr>
+                <th>가</th>
+                <th>나</th>
+                <th>다</th>
+                <th>라</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>B</td>
+                <td>C</td>
+                <td>D</td>
+            </tr>
+            <tr>
+                <td>table과 td, th속성으로 인해</td>
+                <td>표 테두리가 두줄이 되었을때</td>
+                <td>table 선택자의 속성에</td>
+                <td>border-collapse: collapse 라는 속성을 넣어주면 합쳐진다.</td>
+            </tr>
+    </table>
+    <p></p><br>
+    <p></p><br>
+</body>
+
+</html>

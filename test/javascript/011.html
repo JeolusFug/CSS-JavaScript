@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>011</title>
+    <link rel="stylesheet" href="css/dom.css">
+</head>
+
+<body>
+    <img src="images5/Dom1.png" alt="1" width="100%wv"><br>
+    <img src="images5/Dom2.png" alt="1" width="100%wv"><br>
+    <img src="images5/Dom3.png" alt="1" width="100%wv"><br>
+    getElementsByClassName(), getElementsByTagName()의 경우 2개 이상의 반환값을 가질 수 있다. 2개 이상의 반환 값은 인덱스값을 사용하는 HTMLCollection 객체에
+    저장된다.<br>
+    querySelector() 메서드는 하나만 선택된다.<br>
+    위와 같이 여러개의 반환값을 가진 걸 선택하면 가장 앞에 있는게 선택된다.<br>
+    전부 필요하다면 querySelectAll()을 사용하면 된다.
+    <br>
+    <hr><br>
+
+    <div id="container">
+        <h1 id="heading">에디오피아 게뎁</h1>
+        <div id="prod-img">
+            <img src="images6/coffee-pink.jpg" alt="에디오피아 게뎁" id = "cup" onclick="displaySrc()">
+        </div>
+        <div id="desc">
+            <h2 class="bright">Information</h2>
+            <p>2차 세계대전 이후 설립된 <span class="accent">게뎁농장</span>은 유기농 인증 농장으로 여성의 고용 창출과 지역사회 발전에 기여하며 3대째 이어져 내려오는 오랜 역사를
+                가진 농장입니다. 게뎁 농장은 <span class="accent">SCAA 인증</span>을 받은 커피 품질관리 실험실을 갖추고 있어 철처한 관리를 통해 스페셜티커피를 생산합니다.
+            </p>
+            <h2>Flavor Note</h2>
+            <p class="bright">은은하고 다채로운 꽃향, 망고, 다크 체리, 달달함이 입안 가득.</p>
+        </div>
+    </div>
+
+    <script>
+        function displaySrc() {
+            var cup = document.querySelector("#cup");
+            alert("이미지의 위치는 " + cup.getAttribute("src"));
+        }
+    </script>
+</body>
+</html>

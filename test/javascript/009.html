@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>009</title>
+    <style>
+        #container {
+            margin: 50px auto;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 2px double #222;
+            background-color: #d8f0fc;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 80px;
+        }
+
+        .accent {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="images5/DateObject1.png" alt="1" width="100%wv"><br>
+    <img src="images5/DateObject2.png" alt="1" width="100%wv">
+    <img src="images5/MathObject.png" alt="1" width="100%wv">
+    <br><hr><br>
+    <div id="container">
+        <h1>이거 만든지</h1>
+        <p><span class="accent" id="result"></span>일, <br><span class="accent" id="result2"></span>시간 <br> 지났다.</p>
+        <p>공부 열심히 하자</p>
+    </div>
+    <script>
+        // 객체(object)란 프로그램에서 인식할 수 있는 모든 대상,
+        // 데이터를 저장하고 처리하는 기본단위이다.
+
+        // 자바스크립트 객체는 자바 스크립트 안에 미리 객체로 정의해 놓은 것이다.
+        // 문서객체모델(DOM) : 문서 뿐만 아니라 웹 문서 안에 포함된 이미지, 링크, 텍스트 필드 등을 모두 별도의 객체로 관리
+        // 브라우저 관련 객체 : 웹 브라우저 정보를 객체로 관리
+        // 내장 객체 : 웹 프로그래밍에서 자주 사용하는 요소를 객체로 정의해 놓음
+
+        // 사용자 정의 객체는 필요할 때마다 사용자가 직접 만드는 객체이다.
+
+        // 객체의 인스턴스 만들기
+        // 객체는 객체 자체가 아니라 인스턴스 형태로 만들어서 사용한다.
+        // 인스턴스 : 객체를 틀처럼 사용해서 같은 모양으로 찍어낸것(new 객체명)
+
+        // ex) Date 객체의 인스턴스를 만들어서 날자와 시간 표시하는법
+        // var now = new Date();
+        // Date 인스턴스 만들고 변수에 저장하기
+        // document.write("현재 시간은 " + now);
+
+        // 프로퍼티 : 객체의 특징이나 속성
+        // 메서드 : 객체에서 할 수 있는 동작
+        // 프로퍼티    메서드
+        // 제조사      시동걸기
+        // 모델명      움직이기
+        // 색상        멈추기
+        // 배기량      주차하기
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript
+        // 위 사이트에 들어가서 왼쪽 메뉴 References-Built-in objects 에 들어가면 모든 내장 객체를 볼 수 있다.
+        // 오른쪽 위에 언어 한글로 변경 할 수 있다.
+        // 취소선은 더 이상 사용하지 않는 것이란 뜻이다
+
+        var now = new Date();
+        var firstDay = new Date("2024-04-30");
+
+        var toNow = now.getTime();
+        var toFirst = firstDay.getTime();
+        var passedTime = toNow - toFirst;
+
+        // Math.round 는 반올림
+        passedTime = Math.round(passedTime / (24 * 60 * 60 * 1000));
+        passedTime2 = Math.round(passedTime / (24 * 60 * 1000));
+
+        document.querySelector("#result").innerText = passedTime;
+        document.querySelector("#result2").innerText = passedTime2;
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>013</title>
+    <link rel="stylesheet" href="css/nodelist.css">
+    <style>
+        #container1 {
+            width: 500px;
+            margin: 10px auto;
+            padding: 20px;
+        }
+
+        #info {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 쇼핑몰 등에서 상품을 추가했을때 아래에 상품명, 옵션, 가격등이 적힌 창이 추가되는대 이게 새로운 노드를 추가해서 화면에 표시하는것이다. -->
+    <div id="container1">
+        <h1>바나나는 맛있다.</h1>
+        <a href="#" onclick="addI(); this.onclick='';">더보기</a>
+        <!-- onclick="addI(); this.onclick='';"에서 this.onclick=''; 는 함수가 한번만 실행되도록 한다. addI()함수가 무한히 실행되지 않도록 해준다. 빼고 실행해보면 내용이 계속 생기고, 더보기 링크가 없어지지 않는다. -->
+        <div id="info"></div>
+        <a href="#" onclick="addpic(); this.onclick='';">더보기2</a>
+        <div id="picture"></div>
+    </div>
+    <!-- 텍스트노드를 사용하는 새로운 요소를 추가하려면 createElement("p")를 사용하여 <p>태그를 만들어준다.
+    내용인 텍스트는 createTextNode("내용")을 사용하여 내용을 입력한다.
+    이후 p태그의 '내용'이 원하는 요소의 자식 노드임을 설정해주어야한다. <div id="info">의 자식요소로 설정할 것이다.
+    '내용'은 p태그의 자식으로 붙이고,
+    newI.appendChild(txtNode);
+    p태그는 <div id="info"> 의 자식으로 붙인다.
+    document.getElementById("info").appendChild(newI);
+     -->
+
+    <br><hr><br>
+
+    <div>
+        <h2>PPPPPPPPPPPPPPPPPPP</h2>
+        <p>DB를 사용하지 않고 메모장 만들기</p>
+        <form action="">
+            <input type="text" id="subject" autofocus>
+            <button onclick="newRegister(); return false;">추가</button>
+        </form>
+        <hr>
+        <ul id="itemList"></ul>
+    </div>
+
+    <script>
+        function addI() {
+            var newI = document.createElement("p");
+            var txtNode = document.createTextNode("바나나는 노랗고 달달한 냄새가 난다.")
+            newI.appendChild(txtNode);
+            document.getElementById("info").appendChild(newI);
+        }
+
+        // 더보기로 텍스트가 나온것과 같이 이미지가 나오는 응용
+        function addpic() {
+            var newImage = document.createElement("img");
+            var newsrc = document.createAttribute("src");
+            newsrc.value = "images5/Node1.png";
+            var newalt = document.createAttribute("alt");
+            newalt.value = "1";
+            var newwidth = document.createAttribute("width")
+            newwidth.value = "100%wv"
+
+            newImage.setAttributeNode(newsrc);
+            newImage.setAttributeNode(newalt);
+            newImage.setAttributeNode(newwidth);
+            document.getElementById("picture").appendChild(newImage);
+        }
+
+        // 노드를 삭제하는 것도 가능한대, 노드 스스로를 삭제할수는 없고 부모노드에서 삭제해야한다. => 부모노드부터 찾아야한다.
+        // 노드.parentNode 프로퍼티를 사용하면 부모노드의 요소를 반환한다.
+        // 부모노드.removeChild(자식노드) 메서드를 사용해서 자식노드를 삭제한다.
+
+        // 메모장에 새로운 메모를 추가하는 함수
+        function newRegister() {
+            var newItem = document.createElement("li");
+            var subject = document.querySelector("#subject");
+            var newText = document.createTextNode(subject.value);
+
+            newItem.appendChild(newText);
+            document.querySelector("#itemList").appendChild(newItem);
+            // 입력창을 비워준다.
+            subject.value = "";
+            // li항목을 전부 찾아 리스트에 넣어준다.
+            var items = document.querySelectorAll("li");
+            // items의 처음부터 끝까지 반복하는 반복문을 만들어 준다.
+            for(let i = 0; i < items.length; i++) {
+                items[i].addEventListener("click", function() {
+                    // 해당 항목이 부모요소가 있을 경우에 실행을 하도록
+                    if(this.parentNode) {
+                        // 해당 항목의 부모노드에서 자녀노드를 삭제해라(클릭된 해당 항목) 라는 의미
+                        this.parentNode.removeChild(this);
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005</title>
+</head>
+<body>
+    <script>
+        // 자바 스크립트에는 반복문으로 for, while, do~while이 있음
+        var sum = 0;
+        var i;
+        for(i = 1; i<5; i++) {
+            sum += i;
+        document.write(sum);
+        document.write("<br>");
+        }
+        // 위와 같이 자바스크립트에서는 i를 변수선언 해주어야함
+        // 아래는 for문의 중첩
+        var j;
+        
+        for (i = 1; i <= 9; i++) {
+            document.write("<div>");
+            document.write("<h3>" + i + "단</h3>")
+            for (j = 1; j <= 9; j++) {
+                document.write(i + "X" + j + " = " + i * j + "<br>");
+            }
+            document.write("</div>")
+        }
+
+        // while 문은 조건을 체크하고 조건이 맞다면 명령을 실행하고, 맞지 않다면 한번도 실행하지 않음
+        // do ~ while 문은 일단 한번 명령을 실행하고 while 의 조건을 체크한다.
+        // 조건이 맞다면 다시 실행하고, 조건이 맞지 않다면 while 문에서 나온다.
+        // 일단 한번은 실행해야 한다면 do ~ while 문을 사용하고, 그럴 필요가 없다면 while 문을 사용하면 된다.
+        // while 문을 사용한 팩토리얼 계산
+        var n = prompt("숫자를 입력하세요", "10");
+        var msg = "" ;
+
+        if(n !== null) {    // 취소 버튼을 눌렀는지 체크
+            var nFact = 1;  // 결과 값
+            var i = 1;      // 카운터
+
+            while(i <= n) {
+                nFact *= i;
+                i++
+            }
+            msg = n + "! = " + nFact;   // 결과 값을 표시할 문자열
+        } else {
+            msg = "값을 입력하지 않았습니다.";
+        }
+
+        document.write("<br>");    // 결과 표시
+        document.write("<br>");    // 결과 표시
+        document.write(msg);    // 결과 표시
+    </script>
+</body>
+</html>

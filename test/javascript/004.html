@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004</title>
+</head>
+
+<body>
+    <script>
+        // 아래처럼 입력시 사용자가 숫자를 입력하지 않고 취소 버튼을 누르면 3의 배수입니다가 나온다.
+        // null의 경우를 처리하지 않았기 때문이다.
+        var inputNumber = prompt("숫자를 입력해 주세요.")
+
+        // if(inputNumber % 3 === 0) {
+        //     alert("3의 배수 입니다.")
+        // } else {
+        //     alert("3의 배수가 아닙니다.")
+        // }
+
+        if (inputNumber !== null) {
+            if (inputNumber % 3 === 0) {
+                alert("3의 배수 입니다.")
+            } else {
+                alert("3의 배수가 아닙니다.")
+            }
+        } else {
+            alert("취소하셨습니다.")
+        }
+        // 혹은
+        // if(inputNumber === null) {
+        //     alert("취소하셨습니다.")
+        // } if (inputNumber % 3 === 0) {
+        //     alert("3의 배수입니다.")
+        // } else {
+        //     alert("3의 배수가 아닙니다.")
+        // }
+        // 와 같이 처리해야 한다 항상 null 값을 신경쓰자
+
+        // if문 안의 or and not 연산자는 || && ! 를 사용한다
+
+        // switch는 조건이 많을때 if문 대신 사용한다.
+        var session = prompt("좋아하는 과일은? 1. 사과 2. 딸기 3. 바나나 4. 선인장 5. 바오밥나무");
+        // switch문은 아래와 같이 사용한다.
+        // case 에 대해 명령문이 들어가고 break로 마무리
+        switch(session) {
+            case "1" : document.write("사과는 빨간 사과가 맛있습니다.")
+                break;
+            case "2" : document.write("딸기는 향이 좋습니다.")
+                break;
+            case "3" : document.write("바나나는 노랗습니다.")
+                break;
+            case "4" : document.write("선인장은 가시가 많습니다.")
+                break;
+            case "5" : document.write("바오밥나무는 커다랗습니다.")
+                break;
+            // 모든 케이스에 부합하지 않을 경우(취소, 6이상 등과 같이)의 처리는 default를 실행한다.
+            default : alert("왜 선택하지 않았습니까???")
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>010</title>
+</head>
+<body>
+    <img src="images5/browserObject1.png" alt="1" width="100%wv"><br>
+    <img src="images5/browserObject2.png" alt="1" width="100%wv"><br>
+    <img src="images5/browserObject3.png" alt="1" width="100%wv"><br>
+    <img src="images5/browserObject4.png" alt="1" width="100%wv"><br>
+    
+    <script>
+        // 띄울 html의 경로, 창의 이름, 창의 옵션(보통 크기)
+        // window.open("notice.html", "notice", "width=500, height=500");
+        // 창 이름을 설정하지 않았다면 새로고침했을때 계속 새로 열려서 무한 반복으로 열림
+        // 창 이름을 설정하면 한번만 나온다
+
+        // 화면 중앙에 띄우는 법
+        function openCenter(doc, win, w, h) {
+            // 화면의 가용한 width, height를 구하는 법
+            var left = (screen.availWidth -w) / 2;
+            var top = (screen.availHeight - h) / 2;
+
+            var opt = "left = " + left + ", top = " + top + ", width = " + w + ", height = " + h;
+            window.open(doc, win, opt);
+        }
+        openCenter("notice.html", "notice", 500,400);
+    </script>
+</body>
+</html>

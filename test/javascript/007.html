@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>007</title>
+</head>
+<body>
+    <script>
+        // 함수를 여러번 사용 할 수 있도록 만드는 것이 편하다.
+        // 동일하게 더하는 함수라고 하더라도 변수를 직접 상수로 하드코딩하여 함수를 작성한다면 함수를 한번밖에 사용하지 못할것이다.
+        // 함수를 재사용 할 수 있도록 만들기 위해서는 함수 바깥에서 입력값을 받아야 하는대 이때 함수 바깥에서 입력값을 받아오는 변수를 매개변수라고 한다.
+        // addNumber()라는 함수를 정의할때 ()안에 변수를 넣으면 매개변수가 된다.
+        // 매개변수도 다른 변수와 같은 변수이기 때문에 이름도 다른 변수와 같이 지어주면 되고, 여러개의 매개변수가 필요하다면 , 쉼표를 사용하여 여려개의 매개변수를 선언하면 된다.
+
+        // 매개변수가 없는 상수 하드코딩 함수
+        function addNumber() {
+            var num1 = 2;
+            var num2 = 3;
+            sum = num1 + num2;
+        }
+        addNumber();
+        alert("결과는 " + sum);
+
+        // 이걸 재사용 가능한 함수로 바꾼다면
+        function addNumber2(num3, num4) {
+            var sum2 = num3 + num4;
+            return sum2;
+            //* return을 지정하였기 때문에 이 리턴값은 함수를 호출한 부분의 값이 된다.
+        }
+        //* 여기의addNumber2(3, 4)에 함수의 리턴값이 들어가게 된다.
+        var result = addNumber2(3, 4);
+        // 이때 3과 4는 각각 function addNumber2(num3, num4)의 num3과 num4에 순서대로 들어간다.
+        document.write("결과2는 " + result);
+        // 와 같이 바꾸어 사용 할 수 있다.
+        // 매개변수가 있을 경우 return을 사용하여 함수를 사용한다.
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+
+        // 여러번 사용하지 않고 한번만 사용하는 함수는 함수명을 이용하지 않고 함수를 선언하는 즉시 실행되도록 할 수 있다.
+        (function() {
+            var userName = prompt("이름을 입력하세요.");
+            document.write("안녕하세요 " + userName + "님!");
+        }());
+        // 위와 같이 즉시 실행되는 함수는 ()괄호안에 function을 작성하여 구현할 수 있다.
+        // 매개변수가 필요없기 때문에 function뒤의 괄호는 비어두고, 인수가 필요없다면 중괄호가 끝나는 뒤에 빈괄호를 넣어주면 된다.
+        // 만약 매개변수가 필요한 함수라면 매개변수를 넣고 {}괄호뒤의 ()안에 인수를 넣어주면 된다.
+
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+        // 매개변수가 있는 경우
+        (function(num5, num6) {
+            sum3 = num5 + num6;
+            return sum3;
+        }(10,200));
+        document.write("결과3은 " + sum3);
+        
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+
+        // 익명함수란 함수명이 없는 함수를 말한다. 즉시 실행 함수도 익명함수이다. 이름이 없어서 식처럼 동작한다.
+        // 이름이 없기 때문에 즉시 실행 함수처럼 하거나 함수를 변수에 할당하여 변수를 이용하는 방법을 사용한다.
+        const hi = function() {
+            document.write("안녕하세요.");
+        }
+        hi();
+        // 와 같이 사용할 수 있다.
+        // 항상 변하지 않는 값이기 때문에 재선언, 재할당이 불가능한 const를 사용할 수 있다.
+
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+
+        // 화살표 함수
+        const hi2 = () => {
+            document.write("안녕하세요2.");
+        };
+        hi2();
+        // 화살표를 기준으로 왼쪽에 매개변수, 오른쪽에는 실행할 함수를 작성한다.
+        // 실행할 명령이 하나뿐이라면 중괄호는 생략이 가능하다.
+        
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+
+        // 매개변수가 있는 경우
+        let hi3 = (user) => {
+            document.write("안녕하세요3. " + user + "님");
+        };
+        hi3("나");
+        
+        document.write("<br>");
+        document.write("<hr>");
+        document.write("<br>");
+
+        // 매개변수가 두개 이상일 경우
+        let sum5 = (a, b) => {
+            return a + b;
+        };
+        document.write("두 수의 합은 " + sum5(101, 202));
+        // return은 생략이 가능하다
+        // 위의 let sum5는 
+        // let sum5 = (a, b) => a + b; 와 같이 줄일 수 있다.
+    </script>
+</body>
+</html>

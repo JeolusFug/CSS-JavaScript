@@ -1,0 +1,15 @@
+body {
+    background-color: beige;
+}
+
+h2 {
+    color: #2aa2a2;
+}
+
+.active {
+    color: #a00;
+}
+
+.fontSize {
+    font-family: 'Courier New', Courier, monospace;
+}
